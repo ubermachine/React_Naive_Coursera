@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Menu from "./MenuComponent";
 import Dishdetail from "./DishdetailComponent";
-import { Icon } from "react-native-elements";
-import { View, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
