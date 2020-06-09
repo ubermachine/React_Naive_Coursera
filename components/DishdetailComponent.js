@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Text, View } from "react-native";
+import { Text, View, FlatList } from "react-native";
 import { Card } from "react-native-elements";
 
 import { DISHES } from "../shared/dishes";
@@ -18,14 +18,13 @@ class Dishdetail extends Component {
   };
 
   render() {
-     
-    const dishId = this.props.route.params?.dishId
-      
+    const dishId = this.props.route.params?.dishId;
+
     return <RenderDish dish={this.state.dishes[+dishId]} />;
   }
 }
 function RenderDish(props) {
-    //console.log(props)
+  //console.log(props)
   const dish = props.dish;
   if (dish != null) {
     return (
@@ -34,7 +33,7 @@ function RenderDish(props) {
         image={require("./images/uthappizza.png")}
       >
         <Text style={{ margin: 10 }}>{dish.description}</Text>
-      </Card> 
+      </Card>
     );
   } else {
     return <View></View>;
