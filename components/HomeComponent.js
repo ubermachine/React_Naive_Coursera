@@ -33,9 +33,7 @@ class Home extends Component {
     };
   }
 
-  static navigationOptions = {
-    title: "Home",
-  };
+
 
   render() {
     return (

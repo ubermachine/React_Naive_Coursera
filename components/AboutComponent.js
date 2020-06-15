@@ -30,16 +30,16 @@ class AboutUs extends Component {
 
   render() {
     const renderLeaders = ({ item, index }) => {
-            return (
-                <ListItem
-                    key={index}
-                    title={item.name}
-                    subtitle={item.description}
-                    chevron={false}
-                    leftAvatar={{ source: require('./images/alberto.png') }}
-                />
-            )
-        }
+      return (
+        <ListItem
+          key={index}
+          title={item.name}
+          subtitle={item.description}
+          chevron={false}
+          leftAvatar={{ source: require("./images/alberto.png") }}
+        />
+      );
+    };
 
     return (
       <ScrollView>
