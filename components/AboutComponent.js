@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { LEADERS } from "../shared/leaders";
 
 import { Card } from "react-native-elements";
-import { Text, ScrollView, FlatList } from "react-native";
+import { Text, ScrollView, FlatList, View } from "react-native";
 import { ListItem } from "react-native-elements";
 
 function History() {
@@ -44,6 +44,7 @@ class AboutUs extends Component {
     return (
       <ScrollView>
         <History />
+
         <Card title="Corporate Leadership">
           <FlatList
             data={this.state.leaders}

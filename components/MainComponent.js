@@ -22,20 +22,22 @@ import Contact from "./ContactComponent";
 import AboutUs from "./AboutComponent";
 import { Icon } from "react-native-elements";
 
+const HeaderOptions = {
+  headerStyle: {
+    backgroundColor: "#512DA8",
+  },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    color: "#fff",
+  },
+};
+
 const MenuNavigator = createStackNavigator();
 function MenuNavigatorScreen() {
   return (
     <MenuNavigator.Navigator
       initialRouteName="Menu"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#512DA8",
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          color: "#fff",
-        },
-      }}
+      screenOptions={HeaderOptions}
     >
       <MenuNavigator.Screen
         name="Menu"
@@ -67,15 +69,7 @@ function HomeNavigatorScreen() {
   return (
     <HomeNavigator.Navigator
       initialRouteName="Home"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#512DA8",
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          color: "#fff",
-        },
-      }}
+      screenOptions={HeaderOptions}
     >
       <HomeNavigator.Screen
         name="Home"
@@ -103,15 +97,7 @@ function ContactNavigatorScreen() {
   return (
     <ContactNavigator.Navigator
       initialRouteName="Home"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#512DA8",
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          color: "#fff",
-        },
-      }}
+      screenOptions={HeaderOptions}
     >
       <ContactNavigator.Screen
         name="Contact"
@@ -136,17 +122,7 @@ const HistoryNavigator = createStackNavigator();
 
 function HistoryNavigatorScreen() {
   return (
-    <HistoryNavigator.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#512DA8",
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          color: "#fff",
-        },
-      }}
-    >
+    <HistoryNavigator.Navigator screenOptions={HeaderOptions}>
       <HistoryNavigator.Screen
         name="Contact"
         component={AboutUs}

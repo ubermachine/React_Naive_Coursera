@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Menu from "./MenuComponent";
 import Dishdetail from "./DishdetailComponent";
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+
 import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
 import AboutUs from "./AboutComponent";
