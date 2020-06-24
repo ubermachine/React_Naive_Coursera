@@ -7,7 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
-import AboutUs from "./AboutComponent";
+import About from "./AboutComponent";
 
 const MenuNavigator = createStackNavigator();
 function MenuNavigatorScreen() {
@@ -103,7 +103,7 @@ function HistoryNavigatorScreen() {
     >
       <HistoryNavigator.Screen
         name="Contact"
-        component={AboutUs}
+        component={About}
         options={{ title: "About Us" }}
       />
     </HistoryNavigator.Navigator>
@@ -134,7 +134,7 @@ function MainNavigatorScreen() {
         options={{ title: "Contact us", drawerLabel: "Contact us" }}
       />
       <MainNavigator.Screen
-        name="AboutUs"
+        name="About"
         component={HistoryNavigatorScreen}
         options={{ title: "About us", drawerLabel: "About Us" }}
       />
