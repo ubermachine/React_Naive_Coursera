@@ -19,9 +19,7 @@ class Menu extends Component {
   }
 
   render() {
-    //console.log(this.props, "kuhiugiu");
     const { navigate } = this.props.navigation;
-
     const renderMenuItem = ({ item, index }) => {
       return (
         <Tile
@@ -40,7 +38,7 @@ class Menu extends Component {
     } else if (this.props.dishes.errMess) {
       return (
         <View>
-          <Text>{props.dishes.errMess}</Text>
+          <Text>{this.props.dishes.errMess}</Text>
         </View>
       );
     } else {
