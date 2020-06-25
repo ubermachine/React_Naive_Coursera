@@ -28,6 +28,7 @@ import {
   fetchPromos,
   fetchLeaders,
 } from "../redux/ActionCreators";
+import Reservation from "./ReservationComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -111,6 +112,33 @@ function HomeNavigatorScreen() {
         })}
       />
     </HomeNavigator.Navigator>
+  );
+}
+const ReservationNavigator = createStackNavigator();
+
+function ReservationNavigatorScreen() {
+  return (
+    <ReservationNavigator.Navigator
+      initialRouteName="Home"
+      screenOptions={HeaderOptions}
+    >
+      <ReservationNavigator.Screen
+        name="Reservation"
+        component={Reservation}
+        options={({ navigation }) => ({
+          headerTitle: "Reserve Table",
+          headerTitleAlign: "left",
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={24}
+              color="white"
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+    </ReservationNavigator.Navigator>
   );
 }
 
@@ -248,6 +276,22 @@ function MainNavigatorScreen() {
           drawerIcon: ({ tintColor, focused }) => (
             <Icon
               name="info-circle"
+              type="font-awesome"
+              size={24}
+              color={tintColor}
+            />
+          ),
+        }}
+      />
+      <MainNavigator.Screen
+        name="Reservation"
+        component={ReservationNavigatorScreen}
+        options={{
+          title: "Reserve Table",
+          drawerLabel: "Reserve Table",
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name="cutlery"
               type="font-awesome"
               size={24}
               color={tintColor}
