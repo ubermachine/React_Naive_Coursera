@@ -29,6 +29,7 @@ import {
   fetchLeaders,
 } from "../redux/ActionCreators";
 import Reservation from "./ReservationComponent";
+import Favorites from "./FavoriteComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -193,6 +194,31 @@ function HistoryNavigatorScreen() {
     </HistoryNavigator.Navigator>
   );
 }
+const FavoritesNavigator = createStackNavigator();
+
+function FavoritesNavigatorScreen() {
+  return (
+    <FavoritesNavigator.Navigator screenOptions={HeaderOptions}>
+      <FavoritesNavigator.Screen
+        name="Favorites"
+        component={Favorites}
+        options={({ navigation }) => ({
+          headerTitle: "My Favorites",
+          headerTitleAlign: "left",
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={24}
+              color="white"
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+    </FavoritesNavigator.Navigator>
+  );
+}
+
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
     <SafeAreaView
@@ -276,6 +302,22 @@ function MainNavigatorScreen() {
           drawerIcon: ({ tintColor, focused }) => (
             <Icon
               name="info-circle"
+              type="font-awesome"
+              size={24}
+              color={tintColor}
+            />
+          ),
+        }}
+      />
+      <MainNavigator.Screen
+        name="Favorites"
+        component={FavoritesNavigatorScreen}
+        options={{
+          title: "My Favorites",
+          drawerLabel: "My Favorites",
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name="heart"
               type="font-awesome"
               size={24}
               color={tintColor}
