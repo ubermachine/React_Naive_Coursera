@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, FlatList, View } from "react-native";
+import { Text, FlatList, View, Alert } from "react-native";
 import { ListItem } from "react-native-elements";
 
 import Loading from "./LoadingComponent";
@@ -27,13 +27,29 @@ class Favorites extends React.Component {
 
   render() {
     const renderFavoriteItem = ({ item, index }) => {
-      //PURPOSE: this is the button that will appear after swipe, it is defined in array
       const rightButton = [
         {
           text: "Delete",
           type: "delete",
           onPress: () => {
-            this.props.deleteFavorite(item.id);
+            Alert.alert(
+              "Delete Favorite?",
+              "Are you sure you wish to delete the favorite dish " +
+                item.name +
+                "?",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => console.log(item.name + "Not Deleted"),
+                  style: " cancel",
+                },
+                {
+                  text: "OK",
+                  onPress: () => this.props.deleteFavorite(item.id),
+                },
+              ],
+              { cancelable: false }
+            );
           },
         },
       ];
