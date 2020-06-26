@@ -33,12 +33,17 @@ const mapDispatchToProps = (dispatch) => ({
 function RenderDish(props) {
   //console.log(props)
   const dish = props.dish;
-handleViewRef = ref => this.view = ref;
+  handleViewRef = (ref) => {
+    this.view = ref;
+  };
   const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
     if (dx < -200) return true;
     else return false;
   };
-
+  const recognizeOpDrag = ({ moveX, moveY, dx, dy }) => {
+    if (dx > 200) return true;
+    else return false;
+  };
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: (e, gestureState) => {
       return true;
@@ -52,7 +57,7 @@ handleViewRef = ref => this.view = ref;
     },
     onPanResponderEnd: (e, gestureState) => {
       console.log("pan responder end", gestureState);
-      if (recognizeDrag(gestureState))
+      if (recognizeDrag(gestureState)) {
         Alert.alert(
           "Add Favorite",
           "Are you sure you wish to add " + dish.name + " to favorite?",
@@ -73,7 +78,9 @@ handleViewRef = ref => this.view = ref;
           ],
           { cancelable: false }
         );
-
+      } else if (recognizeOpDrag(gestureState)) {
+        props.onPressAddComment();
+      }
       return true;
     },
   });

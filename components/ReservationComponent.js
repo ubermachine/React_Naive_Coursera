@@ -39,7 +39,7 @@ class Reservation extends Component {
       guests: 1,
       smoking: false,
       date: "",
-      showModal: false,
+      // showModal: false,
     });
   }
 
@@ -94,7 +94,7 @@ class Reservation extends Component {
             <Switch
               style={styles.formItem}
               value={this.state.smoking}
-              onTintColor="#512DA8"
+              trackColor={{ false: "black", true: "#512DA8" }}
               onValueChange={(value) => this.setState({ smoking: value })}
             ></Switch>
           </View>
@@ -149,7 +149,7 @@ class Reservation extends Component {
             />
           </View>
 
-          <Modal
+          {/* <Modal
             animationType={"slide"}
             transparent={false}
             visible={this.state.showModal}
@@ -177,7 +177,7 @@ class Reservation extends Component {
                 title="Close"
               />
             </View>
-          </Modal>
+          </Modal> */}
         </ScrollView>
       </Animatable.View>
     );
