@@ -21,10 +21,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Favorites extends React.Component {
-  static navigationOptions = {
-    title: "My Favorites",
-  };
-
   render() {
     const renderFavoriteItem = ({ item, index }) => {
       const rightButton = [
