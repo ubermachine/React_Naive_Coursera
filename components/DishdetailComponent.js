@@ -33,8 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
 function RenderDish(props) {
   //console.log(props)
   const dish = props.dish;
-  handleViewRef = (ref) => (this.view = ref);
-
+handleViewRef = ref => this.view = ref;
   const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
     if (dx < -200) return true;
     else return false;
@@ -82,10 +81,10 @@ function RenderDish(props) {
   if (dish != null) {
     return (
       <Animatable.View
+        ref={this.handleViewRef}
         animation="fadeInDown"
         duration={2000}
         delay={1000}
-        ref={this.handleViewRef}
         {...panResponder.panHandlers}
       >
         <Card featuredTitle={dish.name} image={{ uri: baseUrl + dish.image }}>

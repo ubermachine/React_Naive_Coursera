@@ -2,7 +2,7 @@ import React from "react";
 import { Text, FlatList, View, Alert } from "react-native";
 import { ListItem } from "react-native-elements";
 
-import Loading from "./LoadingComponent";
+import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { connect } from "react-redux";
 import { deleteFavorite } from "../redux/ActionCreators";
