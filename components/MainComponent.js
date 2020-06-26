@@ -72,6 +72,7 @@ function MenuNavigatorScreen() {
           headerTitleAlign: "left",
           headerLeft: () => (
             <Icon
+              iconStyle={{ marginLeft: 10 }}
               name="menu"
               size={24}
               color="white"
@@ -104,6 +105,7 @@ function HomeNavigatorScreen() {
           headerTitleAlign: "left",
           headerLeft: () => (
             <Icon
+              iconStyle={{ marginLeft: 10 }}
               name="menu"
               size={24}
               color="white"
@@ -131,6 +133,7 @@ function ReservationNavigatorScreen() {
           headerTitleAlign: "left",
           headerLeft: () => (
             <Icon
+              iconStyle={{ marginLeft: 10 }}
               name="menu"
               size={24}
               color="white"
@@ -159,6 +162,7 @@ function ContactNavigatorScreen() {
           headerTitleAlign: "left",
           headerLeft: () => (
             <Icon
+              iconStyle={{ marginLeft: 10 }}
               name="menu"
               size={24}
               color="white"
@@ -183,6 +187,7 @@ function HistoryNavigatorScreen() {
           headerTitleAlign: "left",
           headerLeft: () => (
             <Icon
+              iconStyle={{ marginLeft: 10 }}
               name="menu"
               size={24}
               color="white"
@@ -207,6 +212,7 @@ function FavoritesNavigatorScreen() {
           headerTitleAlign: "left",
           headerLeft: () => (
             <Icon
+              iconStyle={{ marginLeft: 10 }}
               name="menu"
               size={24}
               color="white"

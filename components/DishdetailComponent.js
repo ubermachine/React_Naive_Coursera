@@ -119,9 +119,7 @@ class Dishdetail extends Component {
   markFavorite(dishId) {
     this.props.postFavorite(dishId);
   }
-  postComment(dishId, rating, author, comment) {
-    this.props.postComment(dishId, rating, author, comment);
-  }
+
   render() {
     const dishId = this.props.route.params?.dishId;
     const { rating, author, comment } = this.state;
@@ -166,7 +164,7 @@ class Dishdetail extends Component {
             <View style={styles.modalButton}>
               <Button
                 onPress={() => {
-                  this.postComment(dishId, rating, author, comment);
+                  this.props.postComment(dishId, rating, author, comment);
                   this.resetForm();
                 }}
                 color="blue"
