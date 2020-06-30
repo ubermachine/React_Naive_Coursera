@@ -14,6 +14,9 @@ import {
 import { Card } from "react-native-elements";
 import DatePicker from "react-native-datepicker";
 import * as Animatable from "react-native-animatable";
+import * as Permissions from "expo-permissions";
+import { Notifications } from "expo";
+
 class Reservation extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +45,36 @@ class Reservation extends Component {
       // showModal: false,
     });
   }
+  async obtainNotificationPermission() {
+    let permission = await Permissions.getAsync(
+      Permissions.USER_FACING_NOTIFICATIONS
+    );
+    if (permission.status !== "granted") {
+      permission = await Permissions.askAsync(
+        Permissions.USER_FACING_NOTIFICATIONS
+      );
+      if (permission.status !== "granted") {
+        Alert.alert("Permission not granted to show notifications");
+      }
+    }
+    return permission;
+  }
 
+  async presentLocalNotification(date) {
+    await this.obtainNotificationPermission();
+    Notifications.presentLocalNotificationAsync({
+      title: "Your Reservation",
+      body: "Reservation for " + date + " requested",
+      ios: {
+        sound: true,
+      },
+      android: {
+        sound: true,
+        vibrate: true,
+        color: "#512DA8",
+      },
+    });
+  }
   render() {
     const rightButton = [
       {
@@ -54,21 +86,24 @@ class Reservation extends Component {
             "My Alert Msg",
             [
               {
-                text: "Ask me later",
-                onPress: () => console.log("Ask me later pressed"),
-              },
-              {
                 text: "Cancel",
                 onPress: () => console.log("Cancel Pressed"),
                 style: "cancel",
               },
-              { text: "OK", onPress: () => console.log("OK Pressed") },
+              {
+                text: "OK",
+                onPress: () => {
+                  this.presentLocalNotification(this.state.date);
+                  this.resetForm();
+                },
+              },
             ],
             { cancelable: false }
           );
         },
       },
     ];
+
     return (
       <Animatable.View animation="zoomInUp" duration={2000}>
         <ScrollView>
