@@ -16,7 +16,7 @@ import {
   createDrawerNavigator,
   DrawerItemList,
 } from "@react-navigation/drawer";
-
+import Login from "./LoginComponent";
 import Home from "./HomeComponent";
 import Contact from "./ContactComponent";
 import About from "./AboutComponent";
@@ -115,6 +115,34 @@ function HomeNavigatorScreen() {
         })}
       />
     </HomeNavigator.Navigator>
+  );
+}
+const LoginNavigator = createStackNavigator();
+
+function LoginNavigatorScreen() {
+  return (
+    <LoginNavigator.Navigator
+      initialRouteName="Home"
+      screenOptions={HeaderOptions}
+    >
+      <LoginNavigator.Screen
+        name="Login"
+        component={Login}
+        options={({ navigation }) => ({
+          headerTitle: "Login",
+          headerTitleAlign: "left",
+          headerLeft: () => (
+            <Icon
+              iconStyle={{ marginLeft: 10 }}
+              name="menu"
+              size={24}
+              color="white"
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+    </LoginNavigator.Navigator>
   );
 }
 const ReservationNavigator = createStackNavigator();
@@ -252,6 +280,7 @@ const MainNavigator = createDrawerNavigator();
 function MainNavigatorScreen() {
   return (
     <MainNavigator.Navigator
+      initialRouteName="Home"
       drawerStyle={{
         backgroundColor: "white",
         width: 240,
@@ -261,6 +290,22 @@ function MainNavigatorScreen() {
       }}
       drawerContent={(props) => <CustomDrawerContentComponent {...props} />}
     >
+      <MainNavigator.Screen
+        name="Login"
+        component={LoginNavigatorScreen}
+        options={{
+          title: "Login",
+          drawerLabel: "Login",
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name="sign-in"
+              type="font-awesome"
+              size={24}
+              color={tintColor}
+            />
+          ),
+        }}
+      />
       <MainNavigator.Screen
         name="Home"
         component={HomeNavigatorScreen}
