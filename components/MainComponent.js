@@ -31,7 +31,7 @@ import {
 } from "../redux/ActionCreators";
 import Reservation from "./ReservationComponent";
 import Favorites from "./FavoriteComponent";
-
+import NetInfo from "@react-native-community/netinfo";
 const mapStateToProps = (state) => {
   return {
     dishes: state.dishes,
@@ -403,6 +403,14 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      console.log("Connection type", state.type);
+      console.log("Is connected?", state.isConnected);
+    });
+  }
+
+  componentWillUnmount() {
+    unsubscribe();
   }
 
   render() {
