@@ -413,14 +413,20 @@ class Main extends Component {
     //     ToastAndroid.LONG
     //   );
     // });
-    const unsubscribe = NetInfo.addEventListener((state) => {
-      this.handleConnectivityChange(state);
-    });
+
+    // this.netinfoUnsubscribe = NetInfo.addEventListener(
+    //   this.handleConnectivityChange
+    // );
+
+    //REMOVED netifo as it breaks expo web client
   }
 
-  componentWillUnmount() {
-    unsubscribe();
-  }
+  // componentWillUnmount() {
+  //   if (this.netinfoUnsubscribe) {
+  //     this.netinfoUnsubscribe();
+  //     this.netinfoUnsubscribe = null;
+  //   }
+  // }
   handleConnectivityChange = (connectionInfo) => {
     switch (connectionInfo.type) {
       case "none":
