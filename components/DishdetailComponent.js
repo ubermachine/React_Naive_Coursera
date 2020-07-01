@@ -9,6 +9,7 @@ import {
   Button,
   Alert,
   PanResponder,
+  Share,
 } from "react-native";
 
 import { Rating, Card, Icon, Input } from "react-native-elements";
@@ -30,6 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
   postComment: (dishId, rating, author, comment) =>
     dispatch(postComment(dishId, rating, author, comment)),
 });
+
 function RenderDish(props) {
   //console.log(props)
   const dish = props.dish;
@@ -84,6 +86,18 @@ function RenderDish(props) {
       return true;
     },
   });
+  const shareDish = (title, message, url) => {
+    Share.share(
+      {
+        title: title,
+        message: title + ": " + message + " " + url,
+        url: url,
+      },
+      {
+        dialogTitle: "Share " + title,
+      }
+    );
+  };
 
   if (dish != null) {
     return (
@@ -116,6 +130,17 @@ function RenderDish(props) {
               type="font-awesome"
               color="#00aced"
               onPress={() => props.onPressAddComment()}
+            />
+            <Icon
+              raised
+              reverse
+              name="share"
+              type="font-awesome"
+              color="#51D2A8"
+              style={styles.cardItem}
+              onPress={() =>
+                shareDish(dish.name, dish.description, baseUrl + dish.image)
+              }
             />
           </View>
         </Card>
