@@ -22,6 +22,7 @@ import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
+
 import {
   fetchDishes,
   fetchComments,

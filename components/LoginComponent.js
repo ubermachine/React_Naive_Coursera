@@ -141,18 +141,6 @@ class RegisterTab extends Component {
     }
   };
 
-  static navigationOptions = {
-    title: "Register",
-    tabBarIcon: ({ tintColor, focused }) => (
-      <Icon
-        name="user-plus"
-        type="font-awesome"
-        size={24}
-        iconStyle={{ color: tintColor }}
-      />
-    ),
-  };
-
   handleRegister() {
     console.log(JSON.stringify(this.state));
     if (this.state.remember)
@@ -194,7 +182,7 @@ class RegisterTab extends Component {
           <Input
             placeholder="First Name"
             leftIcon={{ type: "font-awesome", name: "user-o" }}
-            onChangeText={(lastname) => this.setState({ firstname })}
+            onChangeText={(firstname) => this.setState({ firstname })}
             value={this.state.firstname}
             containerStyle={styles.formInput}
           />
