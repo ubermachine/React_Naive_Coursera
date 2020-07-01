@@ -10,7 +10,8 @@ import {
   Modal,
   Alert,
 } from "react-native";
-
+import { Notifications } from "expo";
+import * as Permissions from "expo-permissions";
 import { Card } from "react-native-elements";
 import DatePicker from "react-native-datepicker";
 import * as Animatable from "react-native-animatable";
@@ -22,7 +23,8 @@ class Reservation extends Component {
       guests: 1,
       smoking: false,
       date: "",
-      showModal: false,
+      //showModal: false,
+      notification: {},
     };
   }
 
@@ -42,33 +44,53 @@ class Reservation extends Component {
       // showModal: false,
     });
   }
+  async obtainNotificationPermission() {
+    let permission = await Permissions.getAsync(
+      Permissions.USER_FACING_NOTIFICATIONS
+    );
+    if (permission.status !== "granted") {
+      permission = await Permissions.askAsync(
+        Permissions.USER_FACING_NOTIFICATIONS
+      );
+      if (permission.status !== "granted") {
+        Alert.alert("Permission not granted to show notifications");
+      }
+    } else {
+      if (Platform.OS === "android") {
+        Notifications.createChannelAndroidAsync("notify", {
+          name: "notify",
+          sound: true,
+          vibrate: true,
+        });
+      }
+    }
+    return permission;
+  }
+
+  async presentLocalNotification(date) {
+    await this.obtainNotificationPermission();
+
+    Notifications.presentLocalNotificationAsync({
+      title: "Your Reservation",
+      body: "Reservation for " + date + " requested",
+      ios: {
+        sound: true,
+      },
+      android: {
+        channelId: "notify",
+        sound: true,
+        vibrate: true,
+        color: "#512DA8",
+      },
+    });
+  }
+  // componentDidMount() {
+  //   this._notificationSubscription = Notifications.addListener(
+  //     this._handleNotification
+  //   );
+  // }
 
   render() {
-    const rightButton = [
-      {
-        text: "Delete",
-        type: "delete",
-        onPress: () => {
-          Alert.alert(
-            "Reservation confirm",
-            "My Alert Msg",
-            [
-              {
-                text: "Ask me later",
-                onPress: () => console.log("Ask me later pressed"),
-              },
-              {
-                text: "Cancel",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel",
-              },
-              { text: "OK", onPress: () => console.log("OK Pressed") },
-            ],
-            { cancelable: false }
-          );
-        },
-      },
-    ];
     return (
       <Animatable.View animation="zoomInUp" duration={2000}>
         <ScrollView>
@@ -119,7 +141,6 @@ class Reservation extends Component {
                 dateInput: {
                   marginLeft: 36,
                 },
-                // ... You can check the source to find the other keys.
               }}
               onDateChange={(date) => {
                 this.setState({ date: date });
@@ -138,7 +159,13 @@ class Reservation extends Component {
                       onPress: () => this.resetForm(),
                       style: "cancel",
                     },
-                    { text: "OK", onPress: () => this.resetForm() },
+                    {
+                      text: "OK",
+                      onPress: () => {
+                        this.presentLocalNotification(this.state.date);
+                        this.resetForm();
+                      },
+                    },
                   ],
                   { cancelable: false }
                 )

@@ -10,9 +10,7 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff",
-      "android": {
-        "useNextNotificationsApi": true
-      }
+
     },
     "updates": {
       "fallbackToCacheTimeout": 0
