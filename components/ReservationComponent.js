@@ -85,6 +85,7 @@ class Reservation extends Component {
     let myCalendar = await Calendar.getCalendarsAsync();
     const defaultCalendars = myCalendar.filter(
       (each) => each.source.name === "account_name_local"
+      //Replace "account name local" with your default calender name to see it use console.log(myCalender)
     );
 
     const newCalendarID = await Calendar.createEventAsync(
