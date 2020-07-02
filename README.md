@@ -12,3 +12,12 @@ EveryThing Works , if you face any error click on dismiss on Expo app
 
 Sole purpose of this repo is to help people figure out 2-3 years old course with latest dependencies
 
+Final notes-
+
+To use formik instead of outdated react native forms
+
+To use @datetimepicker instead of old dependency
+
+
+
+Better to go through CS50 Mobile app develpoment -https://www.youtube.com/playlist?list=PLhQjrBD2T382gdfveyad09Ierl_3Jh_wR
